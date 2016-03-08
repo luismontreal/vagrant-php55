@@ -1,7 +1,7 @@
 ---
 server:
     install: '1'
-    packages: [vim, git, htop, mc, tree, unzip]
+    packages: [vim, git, htop, mc, tree, unzip, screen]
     timezone: Europe/Berlin
     locale: en_US.UTF-8
 vagrant_local:
