@@ -28,18 +28,14 @@ Vagrant.configure("2") do |config|
     project = 'cakebake.dev'
 
     config.vm.provider :virtualbox do |v|
-        v.name = project
-        v.customize [
-            "modifyvm", :id,
-            "--name", project,
-            "--memory", 512,
-            "--natdnshostresolver1", "on",
-            "--cpus", 1,
-        ]
+        v.customize ["modifyvm", :id, "--name", project]
+        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        v.customize ["modifyvm", :id, "--memory", 512]
+        v.customize ["modifyvm", :id, "--cpus", 1]
     end
 
     config.vm.box = "ubuntu/trusty64"
-
+    config.vm.hostname = project
     config.vm.network "forwarded_port", guest: 80, host: 8080
     config.vm.network :private_network, ip: "192.168.33.99"
     config.ssh.forward_agent = true
@@ -56,5 +52,5 @@ Vagrant.configure("2") do |config|
         config.vm.provision :shell, path: "bootstrap.sh", args: [project]
     end
 
-    config.vm.synced_folder "./htdocs", "/vagrant"
+    config.vm.synced_folder "./htdocs", "/var/www/html"
 end

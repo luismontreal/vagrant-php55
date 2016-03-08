@@ -3,3 +3,5 @@
 
 # PHP FLAG EXAMPLE
 # php_flag display_errors Off
+
+DirectoryIndex index.php index.html

@@ -9,7 +9,7 @@ vagrant_local:
     vm: { base_box: trusty64, hostname: cakebake.dev, ip: 192.168.33.99, memory: '512', sharedfolder: ./htdocs, useVagrantCloud: '1', syncType: '0' }
 apache:
     install: '1'
-    docroot: /vagrant
+    docroot: /var/www/html
     servername: cakebake.dev
 mysql:
     install: '1'
