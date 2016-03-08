@@ -39,6 +39,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 80, host: 8080
     config.vm.network :private_network, ip: "192.168.33.99"
     config.ssh.forward_agent = true
+    config.vm.synced_folder "./htdocs", "/var/www/html", owner: 'www-data', group: 'www-data', mount_options: ["dmode=777", "fmode=777"]
 
     # If ansible is in your path it will provision from your HOST machine
     # If ansible is not found in the path it will be instaled in the VM and provisioned from there
@@ -52,5 +53,4 @@ Vagrant.configure("2") do |config|
         config.vm.provision :shell, path: "bootstrap.sh", args: [project]
     end
 
-    config.vm.synced_folder "./htdocs", "/var/www/html"
 end
