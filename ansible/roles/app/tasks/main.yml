@@ -1,0 +1,23 @@
+---
+# application tasks to be customized and to run after the main provision
+
+#- name: Change setting in php.ini
+#  lineinfile: "dest=/etc/php5/fpm/pool.d/www.conf state=present regexp='^;?listen.owner' line='listen.owner = www-data'"
+
+#- name: Write something at php.ini
+  #shell: echo {{ vagrant_local.vm.hostname }} > /etc/hostname
+#  when: vagrant_local.vm.hostname is defined
+
+- name: Download Ioncube Loader ...
+  sudo: yes
+  shell: curl -SL http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xzv --directory /usr/lib/php5/20121212 --strip-components=1
+
+- name: Enable Ioncube Loader
+  sudo: yes
+  template: src=00-ioncube.ini dest=/etc/php5/apache2/conf.d/00-ioncube.ini
+  notify: restart apache
+
+- name: Register PHP Settings from ./ansible/roles/app/templates/99-custom.ini
+  sudo: yes
+  template: src=99-custom.ini dest=/etc/php5/apache2/conf.d/99-custom.ini
+  notify: restart apache

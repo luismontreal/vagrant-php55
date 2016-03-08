@@ -1,0 +1,5 @@
+# PHP VALUE EXAMPLE
+# php_value max_execution_time 999
+
+# PHP FLAG EXAMPLE
+# php_flag display_errors Off
