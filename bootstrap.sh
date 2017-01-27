@@ -36,6 +36,12 @@ if [ ! -d /home/vagrant/.vagrant ]; then
     sudo -u vagrant mkdir /home/vagrant/.vagrant
 fi
 
+# Install php5-cgi
+if [ ! -d /home/vagrant/.vagrant/php5-cgi ]; then
+    sudo apt-get -y install php5-cgi
+    touch /home/vagrant/.vagrant/php5-cgi
+fi
+
 # Install Git 2.0
 if [ ! -f /home/vagrant/.vagrant/git ]; then
     echo 'Installing GIT'
