@@ -34,6 +34,8 @@ sudo ansible-playbook /vagrant/ansible/playbook.yml -e hostname=$1 --connection=
 # Create folder to track updates
 if [ ! -d /home/vagrant/.vagrant ]; then
     sudo -u vagrant mkdir /home/vagrant/.vagrant
+    # create necessary symlinks to vagrant root
+    ln -s /vagrant/menu.sh /home/vagrant/menu.sh
 fi
 
 # Install php5-cgi
@@ -67,5 +69,7 @@ if [ ! -f /home/vagrant/.vagrant/gcloud ]; then
     sudo chmod 777 -R  google-cloud-sdk/
     touch /home/vagrant/.vagrant/gcloud
 fi
+
+
 
 
