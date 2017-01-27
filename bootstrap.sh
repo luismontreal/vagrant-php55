@@ -70,6 +70,9 @@ if [ ! -f /home/vagrant/.vagrant/gcloud ]; then
     touch /home/vagrant/.vagrant/gcloud
 fi
 
+GREEN='\033[1;32m'
+echo -e "\n ${GREEN}test connection at 192.168.33.99"
+
 
 
 
