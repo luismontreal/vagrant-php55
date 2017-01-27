@@ -44,6 +44,13 @@ if [ ! -f /home/vagrant/.vagrant/git ]; then
     touch /home/vagrant/.vagrant/git
 fi
 
+# Install Mysql
+if [ ! -f /home/vagrant/.vagrant/mysql ]; then
+    echo 'Installing Mysql'
+    sudo apt-get install mysql-server
+    touch /home/vagrant/.vagrant/mysql
+fi
+
 # Download and extract gcloud
 if [ ! -f /home/vagrant/.vagrant/gcloud ]; then
     echo 'Installing gcloud'
@@ -52,4 +59,7 @@ if [ ! -f /home/vagrant/.vagrant/gcloud ]; then
     cd /home/vagrant/appengine/
     tar -zxvf google-cloud-sdk-141.0.0-linux-x86_64.tar.gz
     sudo chmod 777 -R  google-cloud-sdk/
+    touch /home/vagrant/.vagrant/gcloud
 fi
+
+
