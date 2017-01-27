@@ -37,7 +37,7 @@ if [ ! -d /home/vagrant/.vagrant ]; then
 fi
 
 # Install php5-cgi
-if [ ! -d /home/vagrant/.vagrant/php5-cgi ]; then
+if [ ! -f /home/vagrant/.vagrant/php5-cgi ]; then
     sudo apt-get -y install php5-cgi
     touch /home/vagrant/.vagrant/php5-cgi
 fi
