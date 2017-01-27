@@ -30,3 +30,26 @@ cp /vagrant/ansible/inventories/dev /etc/ansible/hosts -f
 chmod 666 /etc/ansible/hosts
 cat /vagrant/ansible/files/authorized_keys >> /home/vagrant/.ssh/authorized_keys
 sudo ansible-playbook /vagrant/ansible/playbook.yml -e hostname=$1 --connection=local
+
+# Create folder to track updates
+if [ ! -d /home/vagrant/.vagrant ]; then
+    sudo -u vagrant mkdir /home/vagrant/.vagrant
+fi
+
+# Install Git 2.0
+if [ ! -f /home/vagrant/.vagrant/git ]; then
+    echo 'Installing GIT'
+    sudo add-apt-repository -y ppa:git-core/ppa
+    sudo apt-get -y install git
+    touch /home/vagrant/.vagrant/git
+fi
+
+# Download and extract gcloud
+if [ ! -f /home/vagrant/.vagrant/gcloud ]; then
+    echo 'Installing gcloud'
+    mkdir /home/vagrant/appengine/
+    wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-141.0.0-linux-x86_64.tar.gz -P /home/vagrant/appengine/
+    cd /home/vagrant/appengine/
+    tar -zxvf google-cloud-sdk-141.0.0-linux-x86_64.tar.gz
+    sudo chmod 777 -R  google-cloud-sdk/
+fi
